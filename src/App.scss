@@ -1,10 +1,11 @@
+
 $primary: #db4c3f;
 $gray: rgb(234, 234, 234);
 $sidebar-with: 200px;
 $header-height: 50px;
 
-li{
-    list-style: none;
+li {
+  list-style: none;
 }
 
 .container {
@@ -30,11 +31,9 @@ li{
     cursor: pointer;
     font-size: 24px;
   }
-
 }
 
 .sidebar {
-
   grid-column: 1/2; //start/end
   grid-row: 2/3;
   position: sticky;
@@ -44,12 +43,14 @@ li{
   flex-direction: column;
   gap: 10px;
 
- &__middle{
- display: flex;
- gap: 10px;
- font-size: 20px;
- }
-
+  &__middle {
+    display: flex;
+    gap: 10px;
+    font-size: 20px;
+    & > span {
+      display: flex;
+    }
+  }
 }
 
 .content {
@@ -57,25 +58,25 @@ li{
   grid-row: 2/3;
 }
 
-.active{
-    background-color: $gray;
+.active {
+  background-color: $gray;
 }
 
-.generic__lists, .project__list{
-    &>li{
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        font-size: 20px;
-        padding: 10px 10px;
-        margin-bottom: 4px;
-        border-radius: 6px;
-        &:hover{
-            background-color: $gray;
-        }
-        &>span{
-            display: flex;
-        }
-
+.generic__lists,
+.project__list {
+  & > li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 20px;
+    padding: 10px 10px;
+    margin-bottom: 4px;
+    border-radius: 6px;
+    &:hover {
+      background-color: $gray;
     }
+    & > span {
+      display: flex;
+    }
+  }
 }

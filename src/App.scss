@@ -3,6 +3,10 @@ $gray: rgb(234, 234, 234);
 $sidebar-with: 200px;
 $header-height: 50px;
 
+li{
+    list-style: none;
+}
+
 .container {
   display: grid;
   grid-template-rows: $header-height calc(100vh - $header-height);
@@ -30,12 +34,48 @@ $header-height: 50px;
 }
 
 .sidebar {
-  background-color: $gray;
+
   grid-column: 1/2; //start/end
   grid-row: 2/3;
+  position: sticky;
+  //insidecontent
+  display: flex;
+  padding: 20px 20px;
+  flex-direction: column;
+  gap: 10px;
+
+ &__middle{
+ display: flex;
+ gap: 10px;
+ font-size: 20px;
+ }
+
 }
 
 .content {
   grid-column: 2/3;
   grid-row: 2/3;
+}
+
+.active{
+    background-color: $gray;
+}
+
+.generic__lists, .project__list{
+    &>li{
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 20px;
+        padding: 10px 10px;
+        margin-bottom: 4px;
+        border-radius: 6px;
+        &:hover{
+            background-color: $gray;
+        }
+        &>span{
+            display: flex;
+        }
+
+    }
 }

@@ -1,17 +1,23 @@
 import "./App.scss";
 import { Header } from "./components/header";
 import { Sidebar } from "./components/sidebar";
-
+import { TodoContent } from "./components/Todo/TodoContent";
 
 function App() {
+  
+  
+
+
+
   return (
     <div className="container">
-      {/* header */}
+     
       <Header/>
-      {/* sidebar */}
+  
       <Sidebar/>
-      {/* content */}
-      <main className="content">content</main>
+     
+      <TodoContent/>
+      
     </div>
   );
 }

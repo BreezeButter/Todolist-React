@@ -1,23 +1,48 @@
-import styles from './TodoConrent.module.scss'
+import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react';
+import { AddTodo } from './AddTodo';
+import { TodoHeader } from './TodoHeader';
+import { TodoLists } from './TodoLists';
+import mockData from '../data/todos.json';
 
-export function TodoContent (){
-  
-    const mockTodo = Array.from({length:50},(el,idx)=> idx+1)
-    const now = new Date()
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    
-    return(
-        <main className="content">
-        <div className={styles.header}>
-            <h2>Inbox</h2>
-            <p>{now.toLocaleDateString('en-US', options)}</p>
-        </div>
-        <div>ADD Todo</div>
-        <ul>
-          {mockTodo.map((el)=><li key={el}>{`item-${el}`}</li>)}
-        </ul>
-      </main>
-    )
+export function TodoContent() {
+    // # Logic
+    const [todos, setTodos] = useState(mockData);
 
-    
+    const handleAddTodo = (newTask) => {
+        // มี new todo
+        let newTodoObj = { id: uuidv4(), task: newTask, status: false, due_date: '' };
+
+        // สร้าง state ใหม่
+        // update state โดย new state
+        // const newTodos = [newTodoObj, ...todos];
+        // setTodos(newTodos);
+
+        // update state โดย callback
+        setTodos(currentState=> [newTodoObj,...currentState])
+    };
+
+    const handleEditTodo =(todoId,newTask)=>{
+
+        console.log('##',newTask,todoId)
+
+        // Modify Array 
+        // #1 FindIndex
+        const foundedIndex = todos.findIndex(todoObj=> todoObj.id === todoId)
+        const newTodos = [...todos]
+        // let oldTodoObj = newTodos[foundedIndex]
+        // oldTodoObj.task = newTask
+        newTodos[foundedIndex] = { ...newTodos[foundedIndex], task : newTask}
+        // { "id": 4, "task": "In congue. Etiam justo.", "status": false, "due_date": "2023-05-04" },
+        setTodos(newTodos)
+    }
+
+    // # UI
+    return (
+        <main className='content'>
+            <TodoHeader />
+            <AddTodo  onAddTodo={handleAddTodo}/>
+            <TodoLists todos={todos} onEditTodo={handleEditTodo} />
+        </main>
+    );
 }

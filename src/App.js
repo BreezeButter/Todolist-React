@@ -1,4 +1,5 @@
-import "./App.scss";
+import "./App.scss"; ///global
+
 import { Header } from "./components/header";
 import { Sidebar } from "./components/sidebar";
 import { TodoContent } from "./components/Todo/TodoContent";
